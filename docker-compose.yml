@@ -1,12 +1,12 @@
-version: '1.0.0'
+version: '2'
 
 services:
   redis:
     image: redis:7
     ports:
-      - 6379:6379
-    expose:
       - '6379:6379'
+    expose:
+      - '6379'
     environment:
       TERM: xterm-256color
   db:
