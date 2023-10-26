@@ -13,8 +13,8 @@ services:
     image: postgres:14
     environment:
       TZ: America/Fortaleza
-      POSTGRES_USER:
-      POSTGRES_PASSWORD:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
       TERM: xterm-256color
     ports:
       - '5432:5432'
