@@ -1,5 +1,5 @@
 #! /bin/bash
 
-sidekiq -c 1
+sidekiq -c 20
 
 
