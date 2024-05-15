@@ -5,9 +5,9 @@ services:
     container_name: redis_container
     image: redis:7
     ports:
-      - '6379:6379'
+      - '6378:6378'
     expose:
-      - '6379'
+      - '6378'
     environment:
       TERM: xterm-256color
   db:
@@ -18,9 +18,9 @@ services:
       POSTGRES_PASSWORD: postgres
       TERM: xterm-256color
     ports:
-      - '5432:5432'
+      - '5435:5435'
     expose:
-      - '5432'
+      - '5435'
 
   web:
     build: .
