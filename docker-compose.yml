@@ -12,8 +12,6 @@ services:
       TERM: xterm-256color
   db:
     image: postgres:14
-    volumes:
-      - pg-data:/var/lib/postgresql/data
     environment:
       TZ: America/Fortaleza
       POSTGRES_USER: postgres
