@@ -1,32 +1,56 @@
-<%= form_with(model: text) do |form| %>
-  <% if text.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(text.errors.count, "error") %> prohibited this text from being saved:</h2>
-
-      <ul>
-        <% text.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+<section class="h-100 gradient-form mb-5">
+  <div class="container py-3 h-80">
+    <div class="d-flex flex-column justify-content-center align-items-center h-100">
+      <div class="w-75">
+        <%= form_with(model: text, local: false) do |form| %>
+        <% if text.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(text.errors.count, "error") %> prohibited this text from being saved:</h2>
+            <ul>
+              <% text.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
+
+        <%= form.text_area :content, id: "text-content", class: "border-0 rounded w-100 p-3 writing-custom-settings", placeholder: "Escreva..." %>
+
+        <% end %>
+      </div>
+      <footer id="word-counter" class="text-muted w-75"></footer>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
   </div>
+</section>
 
-  <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.text_area :content %>
-  </div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const textArea = document.getElementById('text-content');
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
+    const placeHolder = textArea.placeholder;
 
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+    textArea.addEventListener("input", function(){
+      if (textArea.value.length > 0) {
+        textArea.placeholder = "";
+      } else {
+        textArea.placeholder = placeHolder;
+      }
+    })
+  })
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const textArea = document.getElementById('text-content');
+    const wordCountFooter = document.getElementById('word-counter');
+
+    function updateWordCount() {
+      const words = textArea.value.trim().split(/\s+/).filter(word => word !== '');
+      wordCountFooter.textContent = words.length;
+    }
+
+    textArea.addEventListener('input', updateWordCount);
+
+    updateWordCount();
+  });
+</script>
+
+

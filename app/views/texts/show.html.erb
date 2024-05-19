@@ -1,10 +1,6 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @text %>
-
-<div>
-  <%= link_to "Edit this text", edit_text_path(@text) %> |
-  <%= link_to "Back to texts", texts_path %>
-
-  <%= button_to "Destroy this text", @text, method: :delete %>
-</div>
+<!-- app/views/texts/show.html.erb -->
+<h1><%= @text.title %></h1>
+<p><%= @text.content %></p>
+<%= link_to 'Edit', edit_text_path(@text), data: { turbo_frame: "text_#{@text.id}" } %> |
+<%= link_to 'Back', texts_path %> |
+<%= link_to 'Destroy', @text, method: :delete, data: { confirm: 'Are you sure?', turbo_frame: "text_#{@text.id}", turbo_method: :delete } %>

@@ -1,17 +1,8 @@
-<div id="<%= dom_id text %>">
-  <p>
-    <strong>Title:</strong>
-    <%= text.title %>
-  </p>
-
-  <p>
-    <strong>Content:</strong>
-    <%= text.content %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= text.user_id %>
-  </p>
-
-</div>
+<!-- app/views/texts/_text.html.erb -->
+<li id="text_<%= text.id %>">
+  <%= turbo_frame_tag "text_#{text.id}" do %>
+    <%= link_to text.title, text %>
+    <%= link_to 'Edit', edit_text_path(text), data: { turbo_frame: "text_#{text.id}" } %> |
+    <%= link_to 'Destroy', text, method: :delete, data: { confirm: 'Are you sure?', turbo_frame: "text_#{text.id}" } %>
+  <% end %>
+</li>
